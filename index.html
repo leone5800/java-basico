@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Java Básico — Operadores, Condicionais, Scanner e Laços</title>
+  <meta name="description" content="Aula interativa de Java: operadores, tipos boolean e char, estruturas condicionais, entrada de dados com Scanner e laços de repetição, com quiz." />
+  <meta name="theme-color" content="#0f1117" />
+  <link rel="icon" href="/public/icon.svg" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-mark">{ }</span>
+        <div class="brand-text">
+          <strong>Java na Prática</strong>
+          <span>Aula 02 · Lógica e Fluxo de Controle</span>
+        </div>
+      </div>
+      <nav class="topnav" aria-label="Navegação principal">
+        <button class="nav-link is-active" data-target="inicio">Início</button>
+        <button class="nav-link" data-target="operadores">Operadores</button>
+        <button class="nav-link" data-target="condicionais">Condicionais</button>
+        <button class="nav-link" data-target="scanner">Scanner</button>
+        <button class="nav-link" data-target="lacos">Laços</button>
+        <button class="nav-link" data-target="quiz">Quiz</button>
+      </nav>
+      <div class="progress-pill" id="progress-pill">
+        <span id="progress-label">0 / 6 seções vistas</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== INÍCIO ===================== -->
+    <section id="inicio" class="section hero is-visible" data-section>
+      <div class="section-inner">
+        <p class="eyebrow">Revisão rápida antes de começar</p>
+        <h1>Hoje vamos além do <code>print</code>, <code>int</code> e <code>double</code></h1>
+        <p class="lead">
+          Vocês já sabem imprimir mensagens no console e guardar números em variáveis.
+          Agora vamos ensinar o programa a <strong>tomar decisões</strong>, <strong>repetir tarefas</strong>
+          e <strong>conversar com quem está usando o programa</strong>.
+        </p>
+
+        <div class="card-grid">
+          <div class="info-card">
+            <span class="info-card-icon">✔</span>
+            <h3>O que vocês já sabem</h3>
+            <ul>
+              <li><code>System.out.println()</code></li>
+              <li>Tipos <code>int</code> e <code>double</code></li>
+              <li>Tipo <code>String</code></li>
+            </ul>
+          </div>
+          <div class="info-card highlight">
+            <span class="info-card-icon">»</span>
+            <h3>O que vamos aprender hoje</h3>
+            <ul>
+              <li>Tipos <code>boolean</code> e <code>char</code></li>
+              <li>Operadores aritméticos, relacionais e lógicos</li>
+              <li>Estruturas <code>if / else</code></li>
+              <li>Entrada de dados com <code>Scanner</code></li>
+              <li>Laços <code>for</code> e <code>while</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="console-window" aria-hidden="true">
+          <div class="console-header">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="console-title">Main.java</span>
+          </div>
+          <pre class="console-body"><code><span class="tok-kw">public class</span> <span class="tok-class">Main</span> {
+  <span class="tok-kw">public static void</span> <span class="tok-fn">main</span>(<span class="tok-class">String</span>[] args) {
+    <span class="tok-class">System</span>.out.<span class="tok-fn">println</span>(<span class="tok-str">"Vamos aprender Java!"</span>);
+  }
+}</code></pre>
+        </div>
+
+        <button class="btn-primary" data-goto="operadores">Começar pelo primeiro tópico →</button>
+      </div>
+    </section>
+
+    <!-- ===================== OPERADORES ===================== -->
+    <section id="operadores" class="section" data-section>
+      <div class="section-inner">
+        <p class="eyebrow">Tópico 1</p>
+        <h2>Tipos novos e Operadores</h2>
+        <p class="lead">Antes dos operadores, dois tipos novos que vão aparecer bastante hoje:</p>
+
+        <div class="card-grid two-cols">
+          <div class="info-card">
+            <h3><code>boolean</code></h3>
+            <p>Guarda só dois valores possíveis: <code>true</code> (verdadeiro) ou <code>false</code> (falso). É o resultado de toda pergunta que o código faz.</p>
+            <pre class="mini-code"><code><span class="tok-type">boolean</span> ligado = <span class="tok-kw">true</span>;</code></pre>
+          </div>
+          <div class="info-card">
+            <h3><code>char</code></h3>
+            <p>Guarda <strong>um único caractere</strong>, entre aspas simples.</p>
+            <pre class="mini-code"><code><span class="tok-type">char</span> letra = <span class="tok-str">'A'</span>;</code></pre>
+          </div>
+        </div>
+
+        <h3 class="subhead">Operadores Aritméticos</h3>
+        <p>Os mesmos da matemática, com um convidado surpresa: o resto da divisão.</p>
+        <div class="table-wrap">
+          <table class="op-table">
+            <thead><tr><th>Símbolo</th><th>Nome</th><th>Exemplo</th><th>Resultado</th></tr></thead>
+            <tbody>
+              <tr><td><code>+</code></td><td>Soma</td><td><code>5 + 2</code></td><td>7</td></tr>
+              <tr><td><code>-</code></td><td>Subtração</td><td><code>5 - 2</code></td><td>3</td></tr>
+              <tr><td><code>*</code></td><td>Multiplicação</td><td><code>5 * 2</code></td><td>10</td></tr>
+              <tr><td><code>/</code></td><td>Divisão</td><td><code>5 / 2</code></td><td>2 (int corta a casa decimal!)</td></tr>
+              <tr><td><code>%</code></td><td>Módulo (resto)</td><td><code>5 % 2</code></td><td>1</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="console-window">
+          <div class="console-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="console-title">Modulo.java</span></div>
+          <pre class="console-body"><code><span class="tok-type">int</span> a = <span class="tok-num">10</span>;
+<span class="tok-type">int</span> b = <span class="tok-num">3</span>;
+<span class="tok-class">System</span>.out.<span class="tok-fn">println</span>(a % b); <span class="tok-comment">// o que aparece aqui?</span></code></pre>
+        </div>
+
+        <h3 class="subhead">Operadores Relacionais</h3>
+        <p>Comparam dois valores e o resultado é sempre um <code>boolean</code>.</p>
+        <div class="table-wrap">
+          <table class="op-table">
+            <thead><tr><th>Símbolo</th><th>Significado</th></tr></thead>
+            <tbody>
+              <tr><td><code>==</code></td><td>igual a</td></tr>
+              <tr><td><code>!=</code></td><td>diferente de</td></tr>
+              <tr><td><code>&gt;</code> / <code>&lt;</code></td><td>maior que / menor que</td></tr>
+              <tr><td><code>&gt;=</code> / <code>&lt;=</code></td><td>maior ou igual / menor ou igual</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="subhead">Operadores Lógicos</h3>
+        <p>Combinam mais de um <code>boolean</code> ao mesmo tempo.</p>
+        <div class="table-wrap">
+          <table class="op-table">
+            <thead><tr><th>Símbolo</th><th>Significado</th><th>Exemplo</th></tr></thead>
+            <tbody>
+              <tr><td><code>&amp;&amp;</code></td><td>E (as duas precisam ser verdadeiras)</td><td><code>idade &gt;= 18 &amp;&amp; temIngresso</code></td></tr>
+              <tr><td><code>||</code></td><td>OU (basta uma ser verdadeira)</td><td><code>chove || estaFrio</code></td></tr>
+              <tr><td><code>!</code></td><td>NÃO (inverte o valor)</td><td><code>!ligado</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="quick-check">
+          <p>💬 Testem no papel: se <code>x = 7</code>, o que <code>x % 2 == 0</code> retorna?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONDICIONAIS ===================== -->
+    <section id="condicionais" class="section" data-section>
+      <div class="section-inner">
+        <p class="eyebrow">Tópico 2</p>
+        <h2>Estruturas Condicionais</h2>
+        <p class="lead">
+          É aqui que o programa começa a "pensar". Com <code>if</code>, um bloco de código só roda
+          <strong>se</strong> uma condição for verdadeira.
+        </p>
+
+        <div class="console-window">
+          <div class="console-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="console-title">Idade.java</span></div>
+          <pre class="console-body"><code><span class="tok-type">int</span> idade = <span class="tok-num">20</span>;
+
+<span class="tok-kw">if</span> (idade &gt;= <span class="tok-num">18</span>) {
+  <span class="tok-class">System</span>.out.<span class="tok-fn">println</span>(<span class="tok-str">"Maior de idade"</span>);
+} <span class="tok-kw">else</span> {
+  <span class="tok-class">System</span>.out.<span class="tok-fn">println</span>(<span class="tok-str">"Menor de idade"</span>);
+}</code></pre>
+        </div>
+
+        <p>Quando existem <strong>mais de duas</strong> possibilidades, usamos <code>else if</code> encadeado:</p>
+
+        <div class="console-window">
+          <div class="console-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="console-title">Nota.java</span></div>
+          <pre class="console-body"><code><span class="tok-type">double</span> nota = <span class="tok-num">7.5</span>;
+
+<span class="tok-kw">if</span> (nota &gt;= <span class="tok-num">9</span>) {
+  <span class="tok-class">System</span>.out.<span class="tok-fn">println</span>(<span class="tok-str">"Excelente"</span>);
+} <span class="tok-kw">else if</span> (nota &gt;= <span class="tok-num">7</span>) {
+  <span class="tok-class">System</span>.out.<span class="tok-fn">println</span>(<span class="tok-str">"Bom"</span>);
+} <span class="tok-kw">else if</span> (nota &gt;= <span class="tok-num">5</span>) {
+  <span class="tok-class">System</span>.out.<span class="tok-fn">println</span>(<span class="tok-str">"Regular"</span>);
+} <span class="tok-kw">else</span> {
+  <span class="tok-class">System</span>.out.<span class="tok-fn">println</span>(<span class="tok-str">"Precisa estudar mais"</span>);
+}</code></pre>
+        </div>
+
+        <div class="callout">
+          <strong>Ordem importa!</strong> O Java testa de cima para baixo e para no primeiro
+          <code>if</code>/<code>else if</code> verdadeiro. Por isso a ordem das comparações muda o resultado.
+        </div>
+
+        <div class="quick-check">
+          <p>💬 Com a nota <code>8.0</code>, qual mensagem seria impressa no exemplo acima?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SCANNER ===================== -->
+    <section id="scanner" class="section" data-section>
+      <div class="section-inner">
+        <p class="eyebrow">Tópico 3</p>
+        <h2>Entrada de Dados com Scanner</h2>
+        <p class="lead">
+          Até agora, os valores das variáveis eram fixos no código. A classe <code>Scanner</code>
+          permite que o <strong>usuário digite</strong> um valor enquanto o programa está rodando.
+        </p>
+
+        <div class="console-window">
+          <div class="console-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="console-title">Entrada.java</span></div>
+          <pre class="console-body"><code><span class="tok-kw">import</span> java.util.Scanner;
+
+<span class="tok-class">Scanner</span> teclado = <span class="tok-kw">new</span> <span class="tok-class">Scanner</span>(<span class="tok-class">System</span>.in);
+
+<span class="tok-class">System</span>.out.<span class="tok-fn">println</span>(<span class="tok-str">"Digite seu nome:"</span>);
+<span class="tok-class">String</span> nome = teclado.<span class="tok-fn">nextLine</span>();
+
+<span class="tok-class">System</span>.out.<span class="tok-fn">println</span>(<span class="tok-str">"Digite sua idade:"</span>);
+<span class="tok-type">int</span> idade = teclado.<span class="tok-fn">nextInt</span>();
+
+<span class="tok-class">System</span>.out.<span class="tok-fn">println</span>(<span class="tok-str">"Olá, "</span> + nome + <span class="tok-str">"! Você tem "</span> + idade + <span class="tok-str">" anos."</span>);</code></pre>
+        </div>
+
+        <h3 class="subhead">Um método para cada tipo</h3>
+        <div class="table-wrap">
+          <table class="op-table">
+            <thead><tr><th>Método</th><th>Lê um...</th></tr></thead>
+            <tbody>
+              <tr><td><code>nextLine()</code></td><td><code>String</code> (uma linha inteira)</td></tr>
+              <tr><td><code>nextInt()</code></td><td><code>int</code></td></tr>
+              <tr><td><code>nextDouble()</code></td><td><code>double</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout warn">
+          <strong>Cuidado clássico:</strong> se você chamar <code>nextInt()</code> logo depois de <code>nextLine()</code>
+          (ou vice-versa) sem entender a ordem, o programa pode "engolir" uma linha e parecer que travou.
+          Por hoje, o importante é: cada método lê um tipo, na ordem em que o usuário digita.
+        </div>
+
+        <div class="quick-check">
+          <p>💬 Qual método do <code>Scanner</code> eu uso para ler a idade de alguém como número inteiro?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== LAÇOS ===================== -->
+    <section id="lacos" class="section" data-section>
+      <div class="section-inner">
+        <p class="eyebrow">Tópico 4</p>
+        <h2>Laços de Repetição</h2>
+        <p class="lead">
+          Laços repetem um bloco de código várias vezes, sem precisar copiar e colar linha por linha.
+        </p>
+
+        <h3 class="subhead">for — quando eu sei quantas vezes repetir</h3>
+        <div class="console-window">
+          <div class="console-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="console-title">Contador.java</span></div>
+          <pre class="console-body"><code><span class="tok-kw">for</span> (<span class="tok-type">int</span> i = <span class="tok-num">1</span>; i &lt;= <span class="tok-num">5</span>; i++) {
+  <span class="tok-class">System</span>.out.<span class="tok-fn">println</span>(<span class="tok-str">"Contando: "</span> + i);
+}</code></pre>
+        </div>
+        <p>Três partes separadas por ponto e vírgula: <strong>início</strong> → <strong>condição</strong> → <strong>o que muda a cada volta</strong>.</p>
+
+        <h3 class="subhead">while — quando eu repito até algo acontecer</h3>
+        <div class="console-window">
+          <div class="console-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="console-title">Senha.java</span></div>
+          <pre class="console-body"><code><span class="tok-type">int</span> tentativas = <span class="tok-num">0</span>;
+
+<span class="tok-kw">while</span> (tentativas &lt; <span class="tok-num">3</span>) {
+  <span class="tok-class">System</span>.out.<span class="tok-fn">println</span>(<span class="tok-str">"Tentativa "</span> + tentativas);
+  tentativas = tentativas + <span class="tok-num">1</span>;
+}</code></pre>
+        </div>
+
+        <div class="callout warn">
+          <strong>Loop infinito:</strong> se a condição do <code>while</code> nunca virar falsa, o programa
+          repete para sempre. Sempre confira se existe algo dentro do laço que muda a condição.
+        </div>
+
+        <div class="quick-check">
+          <p>💬 No exemplo do <code>for</code>, quantas vezes a palavra "Contando" é impressa?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== QUIZ ===================== -->
+    <section id="quiz" class="section" data-section>
+      <div class="section-inner">
+        <p class="eyebrow">Hora de praticar</p>
+        <h2>Quiz Relâmpago</h2>
+        <p class="lead">Leia o código com atenção antes de escolher. Nem sempre a resposta mais longa é a certa!</p>
+
+        <div id="quiz-app" class="quiz-app">
+          <div class="quiz-progress">
+            <div class="quiz-progress-bar"><div id="quiz-progress-fill" class="quiz-progress-fill"></div></div>
+            <span id="quiz-progress-text">Pergunta 1 de 10</span>
+          </div>
+
+          <div id="quiz-question-card" class="quiz-card"></div>
+
+          <div class="quiz-actions">
+            <button id="quiz-next" class="btn-primary" disabled>Confirmar resposta</button>
+            <button id="quiz-restart" class="btn-secondary hidden">Refazer quiz</button>
+          </div>
+        </div>
+
+        <div id="quiz-result" class="quiz-result hidden">
+          <h3>Resultado da turma</h3>
+          <p id="quiz-result-text"></p>
+          <button id="quiz-restart-2" class="btn-primary">Refazer quiz</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Feito para a aula de Java · Operadores, Condicionais, Scanner e Laços de Repetição</p>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
